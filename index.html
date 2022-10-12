@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <title>Budget Data</title>
+  <head> </head>
+  <body>
+    <h1>Enter Data</h1>
+    <form method="post" name="google-sheet">
+      <input name="Expense" type="text" placeholder="Expense" required />
+      <input name="Amount" type="number" placeholder="Amount" required />
+      <button type="submit" name="submit">Send</button>
+    </form>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycby0VsNJCzuBROO6hxxHq8XVpGVV1Dr0KYJVJfDuqikRNSANeGYXFXI9IU44-yCmA4ar6Q/exec";
+      const form = document.forms["google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => alert("The Info is successfully submitted."))
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
